@@ -24,7 +24,7 @@ class _ProductDetailsState extends State<ProductDetails> {
     final Products productsController = Get.put(Products());
     var filteredItem =
     prodList.firstWhere((element) => element.id == widget.id,
-        orElse: () => null);
+        orElse: () => null!);
 
     return Scaffold(
       appBar: AppBar(

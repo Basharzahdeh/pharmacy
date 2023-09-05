@@ -11,7 +11,6 @@ class SignUpPage extends StatelessWidget {
   static const String usernameHint = 'Enter your UserName';
   static const String authFail = 'Authentication Fail';
 
-  const SignUpPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

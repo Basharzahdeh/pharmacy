@@ -37,7 +37,7 @@ class _Bag_screenState extends State<Bag_screen> {
   double tot() {
     double cartTotal = 0.0;
     cartList.carttsList.forEach((element) {
-      if (element.itemCount > 1) {
+      if (element.itemCount! > 1) {
         cartTotal += (element.price * element.itemCount);
       } else {
         cartTotal += element.price;
@@ -61,7 +61,7 @@ class _Bag_screenState extends State<Bag_screen> {
                       Builder(
                         builder: (innerContext) => Container(
                           width: 310,
-                          child: FlatButton(
+                          child: TextButton(
                             onPressed: () {
                               Get.to(() => ProductDetails(item.id));
                             },
@@ -148,7 +148,7 @@ class _Bag_screenState extends State<Bag_screen> {
                                 icon: const Icon(Icons.remove),
                                 onPressed: () async {
                                   await cartList.updateCount(
-                                      item.id, item.itemCount - 1, item.price);
+                                      item.id, item.itemCount! - 1, item.price);
                                   Get.put(Cart_Control()).fetchData().then((_) {
                                     setState(() {});
                                   });
@@ -160,7 +160,7 @@ class _Bag_screenState extends State<Bag_screen> {
                             icon: const Icon(Icons.add),
                             onPressed: () async {
                               await cartList.updateCount(
-                                  item.id, item.itemCount + 1, item.price);
+                                  item.id, item.itemCount! + 1, item.price);
                               Get.put(Cart_Control()).fetchData().then((_) {
                                 setState(() {});
                               });
@@ -197,7 +197,7 @@ class _Bag_screenState extends State<Bag_screen> {
                             ElevatedButton(
                               child: const Text("Ok"),
                               onPressed: () {
-                                return Get.to(() => const LoginPage());
+                                 Get.to(() =>  LoginPage());
                               },
                             ),
                           ],

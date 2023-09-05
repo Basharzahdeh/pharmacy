@@ -140,11 +140,11 @@ class _MyHomePageState extends State<MyHomePage> {
                               margin: EdgeInsets.symmetric(horizontal: 5.0),
                               child: GestureDetector(
                                   child:
-                                      Image.network(i["url"], fit: BoxFit.fill),
+                                      Image.network(i["url"]!, fit: BoxFit.fill),
                                   onTap: () {
                                     print('i $i');
                                     Get.to(
-                                        () => ProductDetails(i["routeName"]));
+                                        () => ProductDetails(i["routeName"]!));
                                   }));
                         },
                       );
@@ -196,10 +196,10 @@ class _MyHomePageState extends State<MyHomePage> {
                             margin: EdgeInsets.symmetric(horizontal: 5.0),
                             child: GestureDetector(
                                 child:
-                                    Image.network(i["url"], fit: BoxFit.fill),
+                                    Image.network(i["url"]!, fit: BoxFit.fill),
                                 onTap: () {
                                   print('i $i');
-                                  Get.to(() => ProductDetails(i["routeName"]));
+                                  Get.to(() => ProductDetails(i["routeName"]!));
                                 }));
                       },
                     );
@@ -250,10 +250,10 @@ class _MyHomePageState extends State<MyHomePage> {
                             margin: EdgeInsets.symmetric(horizontal: 5.0),
                             child: GestureDetector(
                                 child:
-                                    Image.network(i["url"], fit: BoxFit.fill),
+                                    Image.network(i["url"]!, fit: BoxFit.fill),
                                 onTap: () {
                                   print('i $i');
-                                  Get.to(() => ProductDetails(i["routeName"]));
+                                  Get.to(() => ProductDetails(i["routeName"]!));
                                 }));
                       },
                     );

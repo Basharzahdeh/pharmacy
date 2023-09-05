@@ -14,8 +14,8 @@ Future<void> main() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   await Firebase.initializeApp();
   await GetStorage.init();
-  bool dec = prefs.getBool('x');
-  Widget screen = (dec == false || dec == null) ? const PView() : MyApp();
+  bool? dec = prefs.getBool('x');
+  Widget screen = (dec == false || dec == null) ?  PView() : MyApp();
   runApp(screen);
 }
 

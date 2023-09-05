@@ -15,7 +15,6 @@ class LoginPage extends StatelessWidget {
   static const String passwordHint = 'Enter your Password';
   static const String authFail = 'Authentication Fail';
 
-  const LoginPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -151,7 +150,7 @@ class LoginPage extends StatelessWidget {
                         Center(
                             child: GestureDetector(
                           onTap: () {
-                            Get.to(() => const SignUpPage());
+                            Get.to(() =>  SignUpPage());
                           },
                           child: Container(
                             width: MediaQuery.of(context).size.width * 0.7,

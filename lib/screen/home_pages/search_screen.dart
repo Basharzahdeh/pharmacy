@@ -40,7 +40,7 @@ class _Search_screenState extends State<Search_screen> {
   String retId(String name) {
     var prodList = Get.put(Products()).productsList;
     var filteredItem = prodList.firstWhere((element) => element.title == name,
-        orElse: () => null);
+        orElse: () => null!);
     return filteredItem.id;
   }
 

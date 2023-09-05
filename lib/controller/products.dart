@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class Product {
-  final String id;
-  final String title;
-  final String description;
-  final double price;
-  final String imageUrl;
-  final String section;
+  final  id;
+  final  title;
+  final  description;
+  final  price;
+  final  imageUrl;
+  final  section;
 
   Product({
     @required this.id,
@@ -26,7 +26,7 @@ class Products extends GetxController {
   List<Product> productsList = <Product>[].obs ;
   List nameProducts=[].obs;
   List descProducts=[].obs;
-  String authToken;
+  String? authToken;
 
   //Products(this.authToken,this.productsList);
   final database = FirebaseDatabase.instance.reference().child('product');

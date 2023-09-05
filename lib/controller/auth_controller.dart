@@ -11,9 +11,9 @@ class AuthController extends GetxController {
   var isLoading = false.obs;
 
   //text controllers
-  TextEditingController emailController;
-  TextEditingController passwordController;
-  TextEditingController usernameController;
+  TextEditingController emailController=TextEditingController();
+  TextEditingController passwordController=TextEditingController();
+  TextEditingController usernameController=TextEditingController();
   // firebase instance
   static final firebaseInstance = FirebaseAuth.instance;
 
@@ -37,7 +37,7 @@ class AuthController extends GetxController {
             await firebaseInstance.signInWithEmailAndPassword(
                 email: emailController.text, password: passwordController.text);
         await Storage().setLoginValue();
-        await Storage().setUid(userCredential.user.uid);
+        await Storage().setUid(userCredential.user!.uid);
         // await firebaseInstance.currentUser.sendEmailVerification();
         // await firebaseInstance.currentUser.reload();
         isLoading.value = false;
@@ -76,8 +76,8 @@ class AuthController extends GetxController {
       try {
         UserCredential userCredential =
         await firebaseInstance.signInAnonymously();
-        await Storage().setUid(userCredential.user.uid);
-        await CloudFunctions().registerUser(userCredential.user.uid,
+        await Storage().setUid(userCredential.user!.uid);
+        await CloudFunctions().registerUser(userCredential.user!.uid,
             'not found', 'Anonymously');
         return true;
       } catch (e) {
@@ -98,12 +98,12 @@ class AuthController extends GetxController {
             await firebaseInstance.createUserWithEmailAndPassword(
                 email: emailController.text, password: passwordController.text);
         print(emailController);
-        await CloudFunctions().registerUser(userCredential.user.uid,
+        await CloudFunctions().registerUser(userCredential.user!.uid,
             emailController.value.text, usernameController.value.text);
         await Storage().setLoginValue();
-        await Storage().setUid(userCredential.user.uid);
-        await firebaseInstance.currentUser.sendEmailVerification();
-        await firebaseInstance.currentUser.reload();
+        await Storage().setUid(userCredential.user!.uid);
+        await firebaseInstance.currentUser!.sendEmailVerification();
+        await firebaseInstance.currentUser!.reload();
 
         isLoading.value = false;
         return true;
@@ -148,8 +148,8 @@ class AuthController extends GetxController {
   }
   //verify user-email
   Future<void> verifyUser() async {
-    await firebaseInstance.currentUser.reload();
-    if (firebaseInstance.currentUser.emailVerified) {
+    await firebaseInstance.currentUser!.reload();
+    if (firebaseInstance.currentUser!.emailVerified) {
       isVerified.value = true;
     }
   }

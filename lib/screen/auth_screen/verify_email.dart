@@ -5,7 +5,6 @@ import 'package:test_proj/screen/home_pages/main_screen.dart';
 import '../../../controller/auth_controller.dart';
 
 class VerifyEmail extends StatelessWidget {
-  const VerifyEmail({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +19,8 @@ class VerifyEmail extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Container(
         margin: const EdgeInsets.only(bottom: 100.0),
-        child: FlatButton(
-          color: Colors.lightGreen,
+        child: TextButton(
+          style: ButtonStyle(backgroundColor:  MaterialStatePropertyAll( Colors.lightGreen,),),
           onPressed: () async {
             await authController.verifyUser();
             if (authController.isVerified.value) {

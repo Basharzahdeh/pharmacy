@@ -3,17 +3,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:get/get.dart';
-import 'package:page_view_indicator/page_view_indicator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_proj/controller/auth_controller.dart';
 import 'auth_screen/login_page.dart';
 import 'home_pages/main_screen.dart';
 import 'splash_screen.dart';
 class Data {
-  final String logo;
-  final String imageUrl;
-  final String descraption1;
-  final String descraption2;
+  final  logo;
+  final  imageUrl;
+  final  descraption1;
+  final  descraption2;
 
   Data({
     @required this.logo,
@@ -24,7 +23,6 @@ class Data {
 }
 
 class PView extends StatefulWidget {
-  const PView({Key key}) : super(key: key);
 
   @override
   _PViewState createState() => _PViewState();
@@ -75,7 +73,7 @@ class _PViewState extends State<PView> {
       debugShowCheckedModeBanner: false,
       routes: {
         '/a': (ctx) => Main_Screen(),
-        '/b': (ctx) => const splash_Screen(),
+        '/b': (ctx) =>  splash_Screen(),
       },
       home: Scaffold(
         body: Stack(
@@ -137,22 +135,31 @@ class _PViewState extends State<PView> {
               ),
             ),
             //Ind9cator(currantIndex),
-            PageViewIndicator(
-              pageIndexNotifier: pageIndexNotifier,
-              length: myData.length,
-              normalBuilder: (animationController, index) => Circle(
-                size: 8.0,
-                color: Colors.black54,
-              ),
-              highlightedBuilder: (animationController, index) =>
-                  ScaleTransition(
-                scale: CurvedAnimation(
-                  parent: animationController,
-                  curve: Curves.ease,
-                ),
-                child: const Icon(Icons.circle,color: Colors.lightGreen,),
-              ),
-            ),
+            // PageViewIndicator(
+            //   pageIndexNotifier: pageIndexNotifier,
+            //   length: myData.length,
+            //   normalBuilder: (animationController, index) => Container(
+            //     height: 8, // Adjust the height as needed
+            //     width: 8,  // Adjust the width as needed
+            //     margin: const EdgeInsets.all(4),
+            //     decoration: BoxDecoration(
+            //       shape: BoxShape.circle,
+            //       color: Colors.black54,
+            //     ),
+            //   ),
+            //   highlightedBuilder: (animationController, index) =>
+            //       ScaleTransition(
+            //         scale: CurvedAnimation(
+            //           parent: animationController,
+            //           curve: Curves.ease,
+            //         ),
+            //         child: Icon(
+            //           Icons.circle,
+            //           color: Colors.lightGreen,
+            //           size: 12, // Adjust the size as needed
+            //         ),
+            //       ),
+            // ),
             if (pageIndexNotifier.value==2) Builder(
               builder: (ctx) => Align(
                 alignment: const Alignment(1.2, 0.90),
@@ -204,15 +211,18 @@ class Ind9cator extends StatelessWidget {
 
   Widget buildContainer(int i, Color color) {
     return index == i
-        ? Icons.star
+        ? Icon(
+      Icons.star,
+      color: color,
+    )
         : Container(
-            margin: const EdgeInsets.all(4),
-            height: 15,
-            width: 15,
-            decoration: BoxDecoration(
-              color: color,
-              shape: BoxShape.circle,
-            ),
-          );
+      margin: const EdgeInsets.all(4),
+      height: 15,
+      width: 15,
+      decoration: BoxDecoration(
+        color: color,
+        shape: BoxShape.circle,
+      ),
+    );
   }
 }

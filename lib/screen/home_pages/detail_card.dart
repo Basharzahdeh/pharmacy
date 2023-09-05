@@ -23,7 +23,7 @@ class detailCardState extends State<detailCard> {
           children: prodList.productsList.map((item) {
             if(item.section==widget.sections){
               return Builder(
-                builder: (innerContext) => FlatButton(
+                builder: (innerContext) => TextButton(
                   onPressed: () {
                     Get.to(() => ProductDetails(item.id));
                   },

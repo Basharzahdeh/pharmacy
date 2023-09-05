@@ -8,26 +8,27 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_proj/utils/storage.dart';
 
 class Cart {
-  final String id;
-  final String title;
-  final double price;
-  final String imageUrl;
-  double total;
-  int itemCount;
+  final  id;
+  final  title;
+  final  price;
+  final  imageUrl;
+  double? total;
+  int? itemCount;
 
   Cart({
-    @required this.id,
-    @required this.title,
-    @required this.price,
-    @required this.imageUrl,
-    @required this.itemCount,
+    required this.id,
+    required this.title,
+    required this.price,
+    required this.imageUrl,
+    required this.itemCount,
+    required this.total,
   });
 }
 
 class Cart_Control extends GetxController {
 
   List<Cart> carttsList = <Cart>[].obs;
-  String authToken;
+  String? authToken;
   List idProducts = [].obs;
 
   getData(String authToken2, List<Cart> cartList2) {
@@ -61,7 +62,7 @@ class Cart_Control extends GetxController {
               title: prodData['title'],
               price: prodData['price'].toDouble(),
               imageUrl: prodData['imageUrl'],
-              itemCount: prodData['itemCount'],
+              itemCount: prodData['itemCount'], total: prodData['total'],
             );
             idProducts.add(prodData['id']);
           } else {
@@ -71,6 +72,7 @@ class Cart_Control extends GetxController {
               price: prodData['price'].toDouble(),
               imageUrl: prodData['imageUrl'],
               itemCount: prodData['itemCount'],
+                total: prodData['total']
             ));
             idProducts.add(prodData['id']);
           }
@@ -82,14 +84,14 @@ class Cart_Control extends GetxController {
   }
 
   Future<void> add(
-      {String id,
-      String title,
-      double price,
-      String imageUrl,
-      int itemCount}) async {
+      {String? id,
+      String? title,
+      double? price,
+      String? imageUrl,
+      int? itemCount}) async {
     try {
       idProducts.add(id);
-      await database.child('ProductCart').child(id).set({
+      await database.child('ProductCart').child(id!).set({
         "title": title,
         "id": id,
         "price": price,
@@ -97,11 +99,12 @@ class Cart_Control extends GetxController {
         "itemCount": itemCount,
       });
       carttsList.add(Cart(
-          id: id,
-          title: title,
-          price: price,
-          imageUrl: imageUrl,
-          itemCount: itemCount));
+          id: id!,
+          title: title!,
+          price: price!,
+          imageUrl: imageUrl!,
+          itemCount: itemCount!, total: price,
+      ));
     } catch (error) {
       throw error;
     }
@@ -123,14 +126,14 @@ class Cart_Control extends GetxController {
     var prodItem = carttsList[prodIndex];
     carttsList.removeAt(prodIndex);
     await database.child('ProductCart').child(id).remove();
-    prodItem = null;
+    prodItem = null!;
   }
 
   Future<void> addInfo(
-      {String name,
-      String number,
-      String address,
-      String dropdownValue}) async {
+      {String? name,
+      String? number,
+      String? address,
+      String? dropdownValue}) async {
     try {
       await database.child('Info').set({
         "Name": name,
